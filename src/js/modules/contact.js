@@ -16,12 +16,20 @@ export function loadTurnstileScript() {
   document.head.appendChild(script);
 }
 
+function getFormInputs(form) {
+  if (!form) return {};
+  return {
+    nameInput: form.querySelector('#contact-name, [name="name"]'),
+    emailInput: form.querySelector('#contact-email, [name="email"]'),
+    subjectInput: form.querySelector('#contact-subject, [name="subject"]'),
+    messageInput: form.querySelector('#contact-message, [name="message"]'),
+    submitBtn: form.querySelector('button[type="submit"]')
+  };
+}
+
 function setupFormAttributes(form) {
   if (!form) return;
-  const nameInput = form.querySelector('[name="name"]');
-  const emailInput = form.querySelector('[name="email"]');
-  const subjectInput = form.querySelector('[name="subject"]');
-  const messageInput = form.querySelector('[name="message"]');
+  const { nameInput, emailInput, subjectInput, messageInput } = getFormInputs(form);
 
   if (nameInput) { nameInput.required = true; nameInput.maxLength = LIMITS.name; }
   if (emailInput) { emailInput.required = true; emailInput.maxLength = LIMITS.email; emailInput.type = 'email'; }
@@ -46,7 +54,6 @@ function setupFormAttributes(form) {
 }
 
 export function initContactForm() {
-  // Delegação para interação em tempo real (digitação e foco)
   document.addEventListener('input', (e) => {
     const form = e.target.closest('#contact-form');
     if (form) setupFormAttributes(form);
@@ -57,11 +64,9 @@ export function initContactForm() {
     if (form) setupFormAttributes(form);
   });
 
-  // Tenta configurar se o formulário já existir na árvore inicial
   const initialForm = document.querySelector('#contact-form');
   if (initialForm) setupFormAttributes(initialForm);
 
-  // Delegação de evento para o envio (Submit)
   document.addEventListener('submit', async (e) => {
     const form = e.target.closest('#contact-form');
     if (!form) return;
@@ -69,11 +74,7 @@ export function initContactForm() {
     e.preventDefault();
     setupFormAttributes(form);
 
-    const nameInput = form.querySelector('[name="name"]');
-    const emailInput = form.querySelector('[name="email"]');
-    const subjectInput = form.querySelector('[name="subject"]');
-    const messageInput = form.querySelector('[name="message"]');
-    const submitBtn = form.querySelector('button[type="submit"]');
+    const { nameInput, emailInput, subjectInput, messageInput, submitBtn } = getFormInputs(form);
 
     const name = nameInput?.value.trim() || '';
     const email = emailInput?.value.trim() || '';
