@@ -5,36 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jefferson Peralva Machiqueira | Hub Pessoal & Arquitetura Backend</title>
     
-    <!-- Meta Tags Principais & SEO -->
     <meta name="description" content="Hub pessoal e portfólio de Jefferson Peralva Machiqueira, Desenvolvedor de Software focado em arquitetura backend, microsserviços e infraestrutura auto-hospedada.">
     <meta name="author" content="Jefferson Peralva Machiqueira">
     <meta name="robots" content="index, follow">
 
-    <!-- Configurações PWA e Favicon -->
-    <link rel="icon" type="image/x-icon" href="./favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#0d1117">
 
-    <!-- Open Graph (Facebook, WhatsApp, LinkedIn, Telegram) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://j-peralva.github.io/">
     <meta property="og:title" content="Jefferson Peralva Machiqueira | Hub Pessoal">
     <meta property="og:description" content="Desenvolvedor de Software focado em arquitetura backend, microsserviços e infraestrutura auto-hospedada.">
     <meta property="og:image" content="https://j-peralva.github.io/preview.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:site_name" content="Hub - Jefferson Peralva">
-    <meta property="og:locale" content="pt_BR">
 
-    <!-- Twitter / X Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://j-peralva.github.io/">
     <meta name="twitter:title" content="Jefferson Peralva Machiqueira | Hub Pessoal">
     <meta name="twitter:description" content="Desenvolvedor de Software focado em arquitetura backend, microsserviços e infraestrutura auto-hospedada.">
-    <meta name="twitter:image" content="https://j-peralva.github.io/preview.jpg">
-
-    <!-- Script do Cloudflare Turnstile -->
 </head>
 <body>
 
@@ -42,7 +30,6 @@
 
     <main class="container" id="main-content">
         
-        <!-- Bloco de Perfil -->
         <header class="card profile-card">
             <h1>Jefferson Peralva Machiqueira</h1>
             <p>Desenvolvedor de Software focado em arquitetura backend, microsserviços e infraestrutura auto-hospedada.</p>
@@ -55,30 +42,131 @@
             </div>
         </header>
 
-        <!-- Bloco de Links Externos -->
         <nav class="card links-card" aria-label="Redes Sociais e Contatos">
-            <a href="https://www.linkedin.com/in/jefferson-peralva/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Acessar meu perfil no LinkedIn">LinkedIn</a>
-            <a href="https://github.com/j-peralva" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Acessar meu perfil no GitHub Público">GitHub Público</a>
-            <button class="social-btn" onclick="openModal('modal-contact')" aria-label="Abrir formulário de contato">Fale Comigo</button>
+            <a href="https://linkedin.com/in/jefferson-peralva" target="_blank" rel="noopener noreferrer" class="social-btn">LinkedIn</a>
+            <a href="https://github.com/j-peralva" target="_blank" rel="noopener noreferrer" class="social-btn">GitHub Público</a>
+            <button class="social-btn" data-modal-target="modal-contact">Fale Comigo</button>
         </nav>
 
-        <!-- Rodapé -->
+        <section class="card infrastructure-card">
+            <h3>Infraestrutura própria (Auto-hospedada)</h3>
+            <div class="infrastructure-grid">
+                
+                <div class="card service-card">
+                    <div>
+                        <div class="service-title-wrapper">
+                            <h3>GitLab</h3>
+                            <span class="status-badge-soon"><span class="status-badge-dot-soon"></span>Em Breve</span>
+                        </div>
+                        <p>Ambiente próprio para repositórios privados, APIs em desenvolvimento e esteiras CI/CD isoladas.</p>
+                    </div>
+                    <div class="service-actions">
+                        <span class="service-link-disabled">Staging</span>
+                        <button class="value-btn" data-modal-target="modal-gitlab">Valor p/ cliente</button>
+                    </div>
+                </div>
+
+                <div class="card service-card">
+                    <div>
+                        <div class="service-title-wrapper">
+                            <h3>Nextcloud</h3>
+                            <span class="status-badge-soon"><span class="status-badge-dot-soon"></span>Em Breve</span>
+                        </div>
+                        <p>Armazenamento em nuvem privado e seguro, integrado via S3 para arquivos de projetos.</p>
+                    </div>
+                    <div class="service-actions">
+                        <span class="service-link-disabled">Staging</span>
+                        <button class="value-btn" data-modal-target="modal-nextcloud">Valor p/ cliente</button>
+                    </div>
+                </div>
+
+                <div class="card service-card">
+                    <div>
+                        <div class="service-title-wrapper">
+                            <h3>Anytype</h3>
+                            <span class="status-badge-soon"><span class="status-badge-dot-soon"></span>Em Breve</span>
+                        </div>
+                        <p>Nó de sincronização privado para notas criptografadas e documentações técnicas estratégicas.</p>
+                    </div>
+                    <div class="service-actions">
+                        <span class="service-link-disabled">Staging</span>
+                        <button class="value-btn" data-modal-target="modal-anytype">Valor p/ cliente</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="card tech-card">
+            <div class="tech-header">
+                <h3>Stack & Tecnologias</h3>
+                <input type="text" id="tech-search" class="tech-search-input" placeholder="Filtrar tecnologia..." aria-label="Filtrar tecnologias">
+            </div>
+            <div class="tech-grid">
+                
+                <div class="tech-category">
+                    <h4>Backend & APIs</h4>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">Go</span>
+                        <span class="tech-badge">RESTful</span>
+                        <span class="tech-badge">GraphQL</span>
+                        <span class="tech-badge">Microsserviços</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h4>DevOps & Infra</h4>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Docker</span>
+                        <span class="tech-badge">Kubernetes</span>
+                        <span class="tech-badge">Linux</span>
+                        <span class="tech-badge">AWS</span>
+                        <span class="tech-badge">CI/CD</span>
+                        <span class="tech-badge">Terraform</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h4>Dados & Mensageria</h4>
+                    <div class="tech-badges">
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">MongoDB</span>
+                        <span class="tech-badge">Redis</span>
+                        <span class="tech-badge">RabbitMQ</span>
+                        <span class="tech-badge">Kafka</span>
+                        <span class="tech-badge">S3 Storage</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="card certifications-card">
+            <h3>Certificações & Reconhecimentos</h3>
+            <div class="certs-grid">
+                <div class="cert-item">
+                    <span style="font-weight: 600; color: var(--accent);">AWS Certified</span>
+                </div>
+                <div class="cert-item">
+                    <span style="font-weight: 600; color: var(--accent);">Docker Associate</span>
+                </div>
+            </div>
+        </section>
+
         <footer class="dashboard-footer">
-            <p>© <span id="current-year"></span> Jefferson Peralva Machiqueira • <a href="https://github.com/j-peralva/hub-pessoal/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="footer-link">Licença MIT</a></p>
+            <p>© <span id="current-year"></span> Jefferson Peralva Machiqueira • <a href="https://github.com/j-peralva/j-peralva.github.io/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="footer-link">Licença MIT</a></p>
+            <p class="footer-subtext">Desenvolvido com foco em alta performance e acessibilidade.</p>
         </footer>
 
     </main>
 
-    <!-- Notification Toast -->
-    <div id="toast" class="toast" role="status" aria-live="polite">Mensagem enviada com sucesso!</div>
-
-    <!-- Modal de Contato Reestilizado -->
-    <div id="modal-contact" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-contact-title" onclick="closeModalOutside(event, 'modal-contact')">
+    <div id="modal-contact" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-contact-title">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modal-contact-title" class="modal-title"><span>&gt;_</span> Entrar em Contato</h3>
-                <button class="modal-close" aria-label="Fechar janela" onclick="closeModal('modal-contact')">&times;</button>
-            </div>
+            <button class="modal-close" aria-label="Fechar janela" data-modal-close>&times;</button>
+            <h3 id="modal-contact-title" class="modal-title"><span>✦</span> Fale Comigo</h3>
+            
             <form id="contact-form" class="contact-form">
                 <div class="form-group">
                     <label for="contact-name">Seu Nome *</label>
@@ -97,7 +185,6 @@
                     <textarea id="contact-message" class="form-textarea" required placeholder="Escreva sua mensagem..."></textarea>
                 </div>
 
-                <!-- Widget do CAPTCHA centralizado -->
                 <div class="captcha-container">
                     <div class="cf-turnstile" data-sitekey="0x4AAAAAAE-0hKoZVgRMBlcM" data-theme="dark"></div>
                 </div>
@@ -107,7 +194,42 @@
         </div>
     </div>
 
-    <!-- Script de Entrada do Vite -->
-    <script type="module" src="./src/main.js"></script>
+    <div id="modal-gitlab" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-gitlab-title">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fechar janela" data-modal-close>&times;</button>
+            <h3 id="modal-gitlab-title" class="modal-title"><span>✦</span> Valor agregado: GitLab</h3>
+            <p class="modal-text">
+                Ao utilizar uma infraestrutura própria de CI/CD, garanto que o código do seu projeto está protegido em um ambiente isolado, imune às instabilidades e limites de serviços de terceiros. 
+                <br><br>
+                Isso se traduz em <strong>entregas mais rápidas e seguras</strong>: cada nova funcionalidade desenvolvida é testada e implantada automaticamente, garantindo alta qualidade e zero tempo de inatividade para os seus usuários.
+            </p>
+        </div>
+    </div>
+
+    <div id="modal-nextcloud" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-nextcloud-title">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fechar janela" data-modal-close>&times;</button>
+            <h3 id="modal-nextcloud-title" class="modal-title"><span>✦</span> Valor agregado: Nextcloud</h3>
+            <p class="modal-text">
+                Funciona como um "Google Drive" privado, sob meu controle absoluto. Todos os documentos, arquivos sensíveis e dados do projeto são armazenados longe de grandes corporações.
+                <br><br>
+                Isso assegura ao seu projeto <strong>total confidencialidade e privacidade</strong> (em rigorosa conformidade com a proteção de dados), além de permitir a troca e revisão de arquivos de forma rápida, segura e centralizada.
+            </p>
+        </div>
+    </div>
+
+    <div id="modal-anytype" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-anytype-title">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fechar janela" data-modal-close>&times;</button>
+            <h3 id="modal-anytype-title" class="modal-title"><span>✦</span> Valor agregado: Anytype</h3>
+            <p class="modal-text">
+                Através de um nó privado, mantenho toda a documentação da arquitetura e regras de negócio do seu projeto criptografadas ponta a ponta (E2EE).
+                <br><br>
+                Para você, como cliente, significa que o <strong>conhecimento estratégico e os segredos industriais do seu software</strong> estão documentados de forma resiliente, organizada e blindados contra acessos indevidos.
+            </p>
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>
