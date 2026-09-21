@@ -7,7 +7,6 @@ import urllib.request
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-ALLOWED_ORIGIN = "[https://j-peralva.github.io](https://j-peralva.github.io)"
 MAX_NAME_LENGTH = 100
 MAX_EMAIL_LENGTH = 120
 MAX_SUBJECT_LENGTH = 150
@@ -17,9 +16,6 @@ def build_response(status_code: int, payload: dict) -> dict:
     return {
         "statusCode": status_code,
         "headers": {
-            "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
-            "Access-Control-Allow-Headers": "Content-Type",
-            "Access-Control-Allow-Methods": "OPTIONS,POST",
             "Content-Type": "application/json"
         },
         "body": json.dumps(payload)
@@ -30,7 +26,7 @@ def verify_captcha(token: str) -> bool:
     if not secret_key:
         return True
 
-    url = "[https://challenges.cloudflare.com/turnstile/v0/siteverify](https://challenges.cloudflare.com/turnstile/v0/siteverify)"
+    url = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
     data = urllib.parse.urlencode({'secret': secret_key, 'response': token}).encode('utf-8')
 
     try:
