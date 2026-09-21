@@ -1,3 +1,18 @@
+let turnstileLoaded = false;
+
+export function loadTurnstileScript() {
+    if (turnstileLoaded || document.getElementById('turnstile-script')) return;
+
+    const script = document.createElement('script');
+    script.id = 'turnstile-script';
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+
+    turnstileLoaded = true;
+}
+
 export function initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
@@ -5,7 +20,6 @@ export function initContactForm() {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // Captura o token do Cloudflare Turnstile ou Google reCAPTCHA
         const captchaInput = form.querySelector('[name="cf-turnstile-response"], [name="g-recaptcha-response"]');
         const captchaToken = captchaInput ? captchaInput.value : '';
 
