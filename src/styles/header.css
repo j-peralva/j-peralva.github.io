@@ -1,0 +1,34 @@
+.hero {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 2rem;
+}
+
+.name {
+  font-size: 2.4rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.role {
+  font-size: 1.1rem;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.bio {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.social-links a {
+  color: var(--accent-color);
+  text-decoration: none;
+  margin-right: 1.2rem;
+  font-weight: 500;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}
