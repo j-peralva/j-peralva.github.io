@@ -7,8 +7,9 @@ A high-performance, accessible, and minimalist personal hub built by **Jefferson
 ## 🚀 Tech Stack
 
 * **Frontend:** HTML5, CSS3 (7-1 Sass/CSS Architecture pattern), ESM JavaScript, Vite.
-* **Backend / Serverless:** AWS Lambda (Python 3.12+), Gmail SMTP API.
-* **Security & Anti-Bot:** Cloudflare Turnstile CAPTCHA (Lazy-loaded for 100/100 Lighthouse performance scores).
+* **Backend / Serverless:** AWS Lambda (Python 3.12+), AWS Lambda Function URL, Gmail SMTP API.
+* **Security & Anti-Bot:** Cloudflare Turnstile CAPTCHA (Server-side validation, lazy-loaded for 100/100 Lighthouse performance scores).
+* **UI & UX:** Custom non-blocking Toast Notifications & real-time character counter.
 * **Tooling & Deployment:** GitHub Pages, GitHub Actions, GitHub CLI.
 
 ---
@@ -27,7 +28,7 @@ Ensure you have the following installed locally:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/j-peralva/hub-pessoal.git
+git clone [https://github.com/j-peralva/hub-pessoal.git](https://github.com/j-peralva/hub-pessoal.git)
 cd hub-pessoal
 ```
 
@@ -83,7 +84,9 @@ hub-pessoal/
 
 ## 🛡️ Security & Performance Highlights
 
-* **Lazy-Loaded CAPTCHA:** Third-party Cloudflare Turnstile scripts are dynamically injected only when the user opens the "Fale Comigo" modal. This prevents third-party cookies from impacting initial page load audits, achieving a perfect **100/100 Lighthouse score**.
+* **Lazy-Loaded CAPTCHA & Server Verification:** Third-party Cloudflare Turnstile scripts are dynamically injected only when needed, maintaining a perfect **100/100 Lighthouse score**. Submissions require server-side token validation against Cloudflare's API before email execution.
+* **Resilient UX & Event Delegation:** Form handling uses event delegation to handle dynamic DOM modal rendering seamlessly. Includes real-time character counters (3,000 max length) and custom animated toast notifications instead of disruptive browser alerts.
+* **Payload Constraints & CORS Protection:** Strict client-side and server-side length limits (Name: 100, Email: 120, Subject: 150, Message: 3000) protect against payload spam. CORS is managed directly via AWS Lambda Function URL configuration to avoid duplicate origin header conflicts.
 * **Zero-Dependency Lambda:** The contact form backend relies purely on standard Python libraries (`smtplib`, `ssl`, `urllib`), keeping execution light, fast, and free of third-party package vulnerabilities.
 
 ---
