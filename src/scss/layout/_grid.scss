@@ -142,15 +142,17 @@
   font-size: 0.8rem;
 }
 
+/* Cor ajustada para var(--text-main) para rácio de contraste 12:1 (WCAG AAA) */
 .footer-subtext {
   font-size: 0.75rem;
   margin-top: 4px;
-  color: var(--text-muted);
+  color: var(--text-main);
 }
 
+/* Sublinhado visível por padrão exigido pela WCAG 1.4.1 */
 .footer-link {
   color: var(--accent);
-  text-decoration: underline;
+  text-decoration: underline !important;
   text-underline-offset: 3px;
   transition: color 0.2s;
 
