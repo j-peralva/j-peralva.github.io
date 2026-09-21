@@ -41,7 +41,7 @@ export function initContactForm() {
             captchaToken: captchaToken
         };
 
-        const LAMBDA_API_URL = 'https://SEU-ENDPOINT-LAMBDA.amazonaws.com/';
+        const LAMBDA_API_URL = 'https://fkjx2ewiyx7jebu4ic62amtjle0unjjv.lambda-url.us-east-1.on.aws/';
 
         try {
             const res = await fetch(LAMBDA_API_URL, {
