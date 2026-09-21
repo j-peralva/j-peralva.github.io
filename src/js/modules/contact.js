@@ -16,15 +16,12 @@ export function loadTurnstileScript() {
   document.head.appendChild(script);
 }
 
-export function initContactForm() {
-  const form = document.querySelector('#contact-form');
+function setupFormAttributes(form) {
   if (!form) return;
-
   const nameInput = form.querySelector('[name="name"]');
   const emailInput = form.querySelector('[name="email"]');
   const subjectInput = form.querySelector('[name="subject"]');
   const messageInput = form.querySelector('[name="message"]');
-  const submitBtn = form.querySelector('button[type="submit"]');
 
   if (nameInput) { nameInput.required = true; nameInput.maxLength = LIMITS.name; }
   if (emailInput) { emailInput.required = true; emailInput.maxLength = LIMITS.email; emailInput.type = 'email'; }
@@ -42,18 +39,41 @@ export function initContactForm() {
       messageInput.parentNode.insertBefore(counterContainer, messageInput.nextSibling);
     }
 
-    const updateCounter = () => {
-      const current = messageInput.value.length;
-      counterContainer.textContent = `${current} /${LIMITS.message} caracteres`;
-      counterContainer.style.color = current >= LIMITS.message ? '#ff4d4d' : 'inherit';
-    };
-
-    messageInput.addEventListener('input', updateCounter);
-    updateCounter();
+    const current = messageInput.value.length;
+    counterContainer.textContent = `${current} / ${LIMITS.message} caracteres`;
+    counterContainer.style.color = current >= LIMITS.message ? '#ff4d4d' : 'inherit';
   }
+}
 
-  form.addEventListener('submit', async (e) => {
+export function initContactForm() {
+  // Delegação para interação em tempo real (digitação e foco)
+  document.addEventListener('input', (e) => {
+    const form = e.target.closest('#contact-form');
+    if (form) setupFormAttributes(form);
+  });
+
+  document.addEventListener('focusin', (e) => {
+    const form = e.target.closest('#contact-form');
+    if (form) setupFormAttributes(form);
+  });
+
+  // Tenta configurar se o formulário já existir na árvore inicial
+  const initialForm = document.querySelector('#contact-form');
+  if (initialForm) setupFormAttributes(initialForm);
+
+  // Delegação de evento para o envio (Submit)
+  document.addEventListener('submit', async (e) => {
+    const form = e.target.closest('#contact-form');
+    if (!form) return;
+
     e.preventDefault();
+    setupFormAttributes(form);
+
+    const nameInput = form.querySelector('[name="name"]');
+    const emailInput = form.querySelector('[name="email"]');
+    const subjectInput = form.querySelector('[name="subject"]');
+    const messageInput = form.querySelector('[name="message"]');
+    const submitBtn = form.querySelector('button[type="submit"]');
 
     const name = nameInput?.value.trim() || '';
     const email = emailInput?.value.trim() || '';
@@ -94,13 +114,7 @@ export function initContactForm() {
       const response = await fetch(LAMBDA_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          email,
-          subject,
-          message,
-          captchaToken
-        })
+        body: JSON.stringify({ name, email, subject, message, captchaToken })
       });
 
       const result = await response.json();
@@ -108,10 +122,8 @@ export function initContactForm() {
       if (response.ok) {
         alert('Mensagem enviada com sucesso! Em breve entrarei em contato.');
         form.reset();
-        if (messageInput) {
-          const counter = form.querySelector('#message-char-counter');
-          if (counter) counter.textContent = `0 / ${LIMITS.message} caracteres`;
-        }
+        const counter = form.querySelector('#message-char-counter');
+        if (counter) counter.textContent = `0 / ${LIMITS.message} caracteres`;
       } else {
         alert(`Erro ao enviar: ${result.error || 'Ocorreu uma falha no servidor.'}`);
       }
