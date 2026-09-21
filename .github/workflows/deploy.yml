@@ -3,14 +3,14 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
-# Necessary permissions to publish via GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Ensures only one deployment runs at a time
 concurrency:
   group: 'pages'
   cancel-in-progress: true
@@ -38,13 +38,16 @@ jobs:
         run: npm run build
 
       - name: Setup Pages
+        if: github.event_name == 'push'
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
+        if: github.event_name == 'push'
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
 
       - name: Deploy to GitHub Pages
+        if: github.event_name == 'push'
         id: deployment
         uses: actions/deploy-pages@v4
