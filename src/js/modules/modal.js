@@ -1,6 +1,12 @@
+import { loadTurnstileScript } from './contact.js';
+
 let lastActiveElement = null;
 
 export function openModal(id) {
+    if (id === 'modal-contact') {
+        loadTurnstileScript();
+    }
+
     lastActiveElement = document.activeElement;
     const modal = document.getElementById(id);
     if (!modal) return;
@@ -38,7 +44,6 @@ export function initModalListeners() {
     });
 }
 
-// Atribuição imediata no escopo do window
 if (typeof window !== 'undefined') {
     window.openModal = openModal;
     window.closeModal = closeModal;
