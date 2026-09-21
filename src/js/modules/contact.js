@@ -7,6 +7,15 @@ const LIMITS = {
   message: 3000
 };
 
+export function loadTurnstileScript() {
+  if (document.querySelector('script[src*="turnstile"]')) return;
+  const script = document.createElement('script');
+  script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+  script.async = true;
+  script.defer = true;
+  document.head.appendChild(script);
+}
+
 export function initContactForm() {
   const form = document.querySelector('#contact-form');
   if (!form) return;
@@ -17,17 +26,14 @@ export function initContactForm() {
   const messageInput = form.querySelector('[name="message"]');
   const submitBtn = form.querySelector('button[type="submit"]');
 
-  // Apply HTML5 limits & attributes
   if (nameInput) { nameInput.required = true; nameInput.maxLength = LIMITS.name; }
   if (emailInput) { emailInput.required = true; emailInput.maxLength = LIMITS.email; emailInput.type = 'email'; }
   if (subjectInput) { subjectInput.maxLength = LIMITS.subject; }
 
-  // Inject Message Character Counter & Limits
   if (messageInput) {
     messageInput.required = true;
     messageInput.maxLength = LIMITS.message;
 
-    // Create counter element if not present
     let counterContainer = form.querySelector('#message-char-counter');
     if (!counterContainer) {
       counterContainer = document.createElement('small');
@@ -46,7 +52,6 @@ export function initContactForm() {
     updateCounter();
   }
 
-  // Form Submit Event Handler
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -55,11 +60,9 @@ export function initContactForm() {
     const subject = subjectInput?.value.trim() || 'Contato via Personal Hub';
     const message = messageInput?.value.trim() || '';
 
-    // Turnstile CAPTCHA Token
     const captchaInput = form.querySelector('[name="cf-turnstile-response"]');
     const captchaToken = captchaInput ? captchaInput.value : '';
 
-    // Frontend Validations
     if (!name || !email || !message) {
       alert('Por favor, preencha todos os campos obrigatórios (Nome, E-mail e Mensagem).');
       return;
@@ -81,7 +84,6 @@ export function initContactForm() {
       return;
     }
 
-    // UI Loading State
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.dataset.originalText = submitBtn.textContent;
