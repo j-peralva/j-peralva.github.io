@@ -4,6 +4,8 @@ import javascriptLogo from './assets/javascript.svg'
 import viteLogo from './assets/vite.svg'
 import { setupCounter } from './counter.js'
 
+console.log('CI/CD testado com sucesso!');
+
 document.querySelector('#app').innerHTML = `
 <section id="center">
   <div class="hero">
