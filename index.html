@@ -11,7 +11,7 @@
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
     <meta name="theme-color" content="#0d1117">
 
     <meta property="og:type" content="website">
@@ -48,8 +48,8 @@
             <button class="social-btn" data-modal-target="modal-contact">Fale Comigo</button>
         </nav>
 
-        <section class="card infrastructure-card">
-            <h3>Infraestrutura própria (Auto-hospedada)</h3>
+        <section class="card infrastructure-card" aria-labelledby="infra-heading">
+            <h2 id="infra-heading">Infraestrutura própria (Auto-hospedada)</h2>
             <div class="infrastructure-grid">
                 
                 <div class="card service-card">
@@ -97,15 +97,15 @@
             </div>
         </section>
 
-        <section class="card tech-card">
+        <section class="card tech-card" aria-labelledby="tech-heading">
             <div class="tech-header">
-                <h3>Stack & Tecnologias</h3>
+                <h2 id="tech-heading">Stack & Tecnologias</h2>
                 <input type="text" id="tech-search" class="tech-search-input" placeholder="Filtrar tecnologia..." aria-label="Filtrar tecnologias">
             </div>
             <div class="tech-grid">
                 
                 <div class="tech-category">
-                    <h4>Backend & APIs</h4>
+                    <h3>Backend & APIs</h3>
                     <div class="tech-badges">
                         <span class="tech-badge">Node.js</span>
                         <span class="tech-badge">Python</span>
@@ -117,7 +117,7 @@
                 </div>
 
                 <div class="tech-category">
-                    <h4>DevOps & Infra</h4>
+                    <h3>DevOps & Infra</h3>
                     <div class="tech-badges">
                         <span class="tech-badge">Docker</span>
                         <span class="tech-badge">Kubernetes</span>
@@ -129,7 +129,7 @@
                 </div>
 
                 <div class="tech-category">
-                    <h4>Dados & Mensageria</h4>
+                    <h3>Dados & Mensageria</h3>
                     <div class="tech-badges">
                         <span class="tech-badge">PostgreSQL</span>
                         <span class="tech-badge">MongoDB</span>
@@ -143,8 +143,8 @@
             </div>
         </section>
 
-        <section class="card certifications-card">
-            <h3>Certificações & Reconhecimentos</h3>
+        <section class="card certifications-card" aria-labelledby="certs-heading">
+            <h2 id="certs-heading">Certificações & Reconhecimentos</h2>
             <div class="certs-grid">
                 <div class="cert-item">
                     <span style="font-weight: 600; color: var(--accent);">AWS Certified</span>
@@ -165,7 +165,7 @@
     <div id="modal-contact" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-contact-title">
         <div class="modal-content">
             <button class="modal-close" aria-label="Fechar janela" data-modal-close>&times;</button>
-            <h3 id="modal-contact-title" class="modal-title"><span>&gt;_</span> Fale Comigo</h3>
+            <h2 id="modal-contact-title" class="modal-title"><span>&gt;_</span> Fale Comigo</h2>
             
             <form id="contact-form" class="contact-form">
                 <div class="form-group">
@@ -197,7 +197,7 @@
     <div id="modal-gitlab" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-gitlab-title">
         <div class="modal-content">
             <button class="modal-close" aria-label="Fechar janela" data-modal-close>&times;</button>
-            <h3 id="modal-gitlab-title" class="modal-title"><span>&gt;_</span> Valor agregado: GitLab</h3>
+            <h2 id="modal-gitlab-title" class="modal-title"><span>&gt;_</span> Valor agregado: GitLab</h2>
             <p class="modal-text">
                 Ao utilizar uma infraestrutura própria de CI/CD, garanto que o código do seu projeto está protegido em um ambiente isolado, imune às instabilidades e limites de serviços de terceiros. 
                 <br><br>
@@ -209,7 +209,7 @@
     <div id="modal-nextcloud" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-nextcloud-title">
         <div class="modal-content">
             <button class="modal-close" aria-label="Fechar janela" data-modal-close>&times;</button>
-            <h3 id="modal-nextcloud-title" class="modal-title"><span>&gt;_</span> Valor agregado: Nextcloud</h3>
+            <h2 id="modal-nextcloud-title" class="modal-title"><span>&gt;_</span> Valor agregado: Nextcloud</h2>
             <p class="modal-text">
                 Funciona como um "Google Drive" privado, sob meu controle absoluto. Todos os documentos, arquivos sensíveis e dados do projeto são armazenados longe de grandes corporações.
                 <br><br>
@@ -221,7 +221,7 @@
     <div id="modal-anytype" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-anytype-title">
         <div class="modal-content">
             <button class="modal-close" aria-label="Fechar janela" data-modal-close>&times;</button>
-            <h3 id="modal-anytype-title" class="modal-title"><span>&gt;_</span> Valor agregado: Anytype</h3>
+            <h2 id="modal-anytype-title" class="modal-title"><span>&gt;_</span> Valor agregado: Anytype</h2>
             <p class="modal-text">
                 Através de um nó privado, mantenho toda a documentação da arquitetura e regras de negócio do seu projeto criptografadas ponta a ponta (E2EE).
                 <br><br>
