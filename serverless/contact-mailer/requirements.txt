@@ -1,0 +1,12 @@
+# Serverless Contact Mailer - Production Dependencies
+#
+# 🔒 SECURITY ARCHITECTURE NOTE:
+# This microservice is intentionally designed with ZERO external dependencies.
+# It relies strictly on the Python 3.12+ Standard Library (smtplib, ssl, urllib, etc.)
+# to reduce the attack surface, eliminate supply chain vulnerabilities, and
+# minimize Lambda cold start times.
+# 
+# Therefore, no packages need to be installed via pip for production.
+# 
+# (If you decide to add third-party libraries in the future, list them below).
+
