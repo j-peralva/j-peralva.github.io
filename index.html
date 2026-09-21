@@ -73,11 +73,13 @@
     <!-- Notification Toast -->
     <div id="toast" class="toast" role="status" aria-live="polite">Mensagem enviada com sucesso!</div>
 
-    <!-- Modal de Contato com CAPTCHA -->
+    <!-- Modal de Contato Reestilizado -->
     <div id="modal-contact" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-contact-title" onclick="closeModalOutside(event, 'modal-contact')">
         <div class="modal-content">
-            <button class="modal-close" aria-label="Fechar janela" onclick="closeModal('modal-contact')">&times;</button>
-            <h3 id="modal-contact-title" class="modal-title"><span>✦</span> Entrar em Contato</h3>
+            <div class="modal-header">
+                <h3 id="modal-contact-title" class="modal-title"><span>✦</span> Entrar em Contato</h3>
+                <button class="modal-close" aria-label="Fechar janela" onclick="closeModal('modal-contact')">&times;</button>
+            </div>
             <form id="contact-form" class="contact-form">
                 <div class="form-group">
                     <label for="contact-name">Seu Nome *</label>
@@ -96,8 +98,10 @@
                     <textarea id="contact-message" class="form-textarea" required placeholder="Escreva sua mensagem..."></textarea>
                 </div>
 
-                <!-- Widget do CAPTCHA (substitua SUA_SITE_KEY pela chave do Cloudflare Turnstile) -->
-                <div class="cf-turnstile" data-sitekey="0x4AAAAAAE-0hKoZVgRMBlcM" data-theme="dark"></div>
+                <!-- Widget do CAPTCHA centralizado -->
+                <div class="captcha-container">
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAAE-0hKoZVgRMBlcM" data-theme="dark"></div>
+                </div>
 
                 <button type="submit" class="social-btn submit-btn">Enviar Mensagem</button>
             </form>
