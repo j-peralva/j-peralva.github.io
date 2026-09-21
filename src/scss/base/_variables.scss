@@ -1,0 +1,21 @@
+$bg-color: #0d1117;
+$card-bg: #161b22;
+$card-border: #30363d;
+$text-main: #c9d1d9;
+$text-muted: #8b949e;
+$accent: #58a6ff;
+$accent-hover: #1f6feb;
+$warning: #d29922;
+$success: #56d364;
+
+:root {
+  --bg-color: #{$bg-color};
+  --card-bg: #{$card-bg};
+  --card-border: #{$card-border};
+  --text-main: #{$text-main};
+  --text-muted: #{$text-muted};
+  --accent: #{$accent};
+  --accent-hover: #{$accent-hover};
+  --warning: #{$warning};
+  --success: #{$success};
+}
