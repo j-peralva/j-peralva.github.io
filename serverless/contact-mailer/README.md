@@ -1,34 +1,36 @@
 # Serverless Contact Mailer (AWS Lambda + Python)
 
-Microsserviço serverless de disparo de e-mails para formulários de contato, projetado para operar com **zero dependências externas** e alta proteção anti-abuso.
+A lightweight, zero-dependency serverless backend service designed to handle contact form submissions securely via Google SMTP with Cloudflare Turnstile anti-bot verification.
 
 ---
 
-## 🔒 Arquitetura de Segurança
+## 🔒 Security Architecture
 
-1. **Zero External Dependencies:** Utiliza estritamente os pacotes da Standard Library do Python (`smtplib`, `ssl`, `urllib`), dispensando *Lambda Layers* e reduzindo a superfície de ataque.
-2. **CORS Restrito:** Responde apenas a requisições com origem autorizada (`https://j-peralva.github.io`).
-3. **Turnstile Anti-Bot:** Verificação server-side obrigatória do token antes de qualquer chamada de rede SMTP.
-4. **Proteção de Memória:** Limite rígido de caracteres em todos os campos de entrada para prevenir ataques de estouro de payload.
-5. **IAM Least Privilege:** Requer apenas a política padrão `AWSLambdaBasicExecutionRole` (gravação de logs no CloudWatch).
+1. **Zero External Dependencies:** Built strictly with Python's Standard Library (`smtplib`, `ssl`, `urllib`), eliminating the need for Lambda Layers and reducing supply chain vulnerability risks.
+2. **Strict CORS Policy:** Only accepts requests originating from `https://j-peralva.github.io`.
+3. **Turnstile Anti-Bot Protection:** Mandatory server-side token validation before triggering any SMTP network calls.
+4. **Memory & Payload Sanitization:** Strict character length limits enforced on all input fields (Name, Email, Subject, Message) to prevent buffer and memory overload attacks.
+5. **IAM Least Privilege:** Requires only the default `AWSLambdaBasicExecutionRole` policy for Amazon CloudWatch logging.
 
 ---
 
-## ⚙️ Implantação na AWS
+## ⚙️ AWS Deployment & Configuration
 
-1. Crie uma função Lambda na AWS:
-   * **Runtime:** Python 3.12 (ou superior)
-   * **Arquitetura:** `arm64` (Graviton2 — menor custo e menor latência) ou `x86_64`
-2. Cole o código de `lambda_function.py` no editor de código da Lambda.
-3. Configure as variáveis de ambiente em **Configuration -> Environment variables**:
-   * `GMAIL_USER`
-   * `GMAIL_APP_PASS`
-   * `RECIPIENT_EMAIL`
-   * `CAPTCHA_SECRET_KEY`
-4. Habilite o **Function URL** (ou associe a um **API Gateway HTTP API**):
+1. **Create an AWS Lambda Function:**
+   * **Runtime:** Python 3.12+
+   * **Architecture:** `arm64` (Graviton2) or `x86_64`
+2. **Deploy Code:** Paste the content of `lambda_function.py` into the AWS Lambda Code Editor.
+3. **Environment Variables:**
+   Navigate to **Configuration -> Environment variables** and add:
+   * `GMAIL_USER`: Sender Gmail address.
+   * `GMAIL_APP_PASS`: 16-character Google App Password.
+   * `RECIPIENT_EMAIL`: Target email address to receive contact form messages.
+   * `CAPTCHA_SECRET_KEY`: Secret Key generated in Cloudflare Turnstile.
+4. **Enable Function URL / API Gateway:**
    * **Auth type:** `NONE`
-   * **Configure CORS:**
-     * Allow Origin: `https://j-peralva.github.io`
-     * Allow Headers: `content-type`
-     * Allow Methods: `POST, OPTIONS`
-5. Em **Configuration -> Concurrency**, defina a **Reserved Concurrency** para `5` para limitar execuções concorrentes e evitar custos não planejados.
+   * **CORS Settings:**
+     * **Allow Origin:** `https://j-peralva.github.io`
+     * **Allow Headers:** `content-type`
+     * **Allow Methods:** `POST, OPTIONS`
+5. **Concurrency Limit:**
+   In **Configuration -> Concurrency**, set **Reserved Concurrency** to `5` to prevent unexpected billing or DDoS abuse.
