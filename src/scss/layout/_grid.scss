@@ -54,7 +54,6 @@
 .service-link-disabled {
   font-size: 0.85rem;
   color: var(--text-muted);
-  opacity: 0.6;
   cursor: not-allowed;
 }
 
@@ -82,7 +81,7 @@
   flex-wrap: wrap;
   gap: 12px;
 
-  h3 {
+  h2 {
     color: #ffffff;
     font-size: 1.1rem;
   }
@@ -98,7 +97,7 @@
 }
 
 .tech-category {
-  h4 {
+  h3 {
     color: var(--text-muted);
     font-size: 0.8rem;
     margin-bottom: 12px;
@@ -126,7 +125,7 @@
   align-items: center;
   justify-content: center;
   height: 50px;
-  filter: grayscale(100%) opacity(60%);
+  filter: grayscale(100%) opacity(80%);
   transition: all 0.3s ease;
 
   &:hover {
@@ -143,18 +142,22 @@
   font-size: 0.8rem;
 }
 
+/* Cor ajustada para var(--text-main) para rácio de contraste 12:1 (WCAG AAA) */
 .footer-subtext {
   font-size: 0.75rem;
   margin-top: 4px;
-  opacity: 0.7;
+  color: var(--text-main);
 }
 
+/* Sublinhado visível por padrão exigido pela WCAG 1.4.1 */
 .footer-link {
   color: var(--accent);
-  text-decoration: none;
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
 
   &:hover {
-    text-decoration: underline;
+    color: var(--accent-hover);
   }
 }
 
