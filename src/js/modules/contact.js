@@ -7,6 +7,39 @@ const LIMITS = {
   message: 3000
 };
 
+// Função para exibir a notificação no canto inferior direito
+function showNotification(message, type = 'success') {
+  let container = document.getElementById('toast-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'toast-container';
+    container.style.cssText = 'position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 10000; pointer-events: none;';
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement('div');
+  const bgColor = type === 'success' ? '#10b981' : '#ef4444'; // Verde para sucesso, vermelho para erro
+  toast.style.cssText = `background: ${bgColor}; color: #ffffff; padding: 12px 24px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-family: inherit; font-size: 0.9rem; font-weight: 500; opacity: 0; transform: translateY(20px); transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); pointer-events: auto;`;
+  toast.textContent = message;
+
+  container.appendChild(toast);
+
+  // Animação de entrada
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0)';
+    });
+  });
+
+  // Remove após 4 segundos
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(10px)';
+    setTimeout(() => toast.remove(), 300);
+  }, 4000);
+}
+
 export function loadTurnstileScript() {
   if (document.querySelector('script[src*="turnstile"]')) return;
   const script = document.createElement('script');
@@ -85,23 +118,23 @@ export function initContactForm() {
     const captchaToken = captchaInput ? captchaInput.value : '';
 
     if (!name || !email || !message) {
-      alert('Por favor, preencha todos os campos obrigatórios (Nome, E-mail e Mensagem).');
+      showNotification('Preencha todos os campos obrigatórios.', 'error');
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      alert('Por favor, insira um e-mail válido.');
+      showNotification('Por favor, insira um e-mail válido.', 'error');
       return;
     }
 
     if (message.length > LIMITS.message) {
-      alert(`Sua mensagem excede o limite máximo de ${LIMITS.message} caracteres.`);
+      showNotification(`A mensagem excede o limite de ${LIMITS.message} caracteres.`, 'error');
       return;
     }
 
     if (!captchaToken) {
-      alert('Por favor, conclua a verificação de segurança (CAPTCHA) antes de enviar.');
+      showNotification('Conclua a verificação de segurança (CAPTCHA).', 'error');
       return;
     }
 
@@ -121,16 +154,16 @@ export function initContactForm() {
       const result = await response.json();
 
       if (response.ok) {
-        alert('Mensagem enviada com sucesso! Em breve entrarei em contato.');
+        showNotification('Mensagem enviada com sucesso!', 'success');
         form.reset();
         const counter = form.querySelector('#message-char-counter');
         if (counter) counter.textContent = `0 / ${LIMITS.message} caracteres`;
       } else {
-        alert(`Erro ao enviar: ${result.error || 'Ocorreu uma falha no servidor.'}`);
+        showNotification(`Erro: ${result.error || 'Falha no servidor.'}`, 'error');
       }
     } catch (err) {
       console.error('Erro no envio:', err);
-      alert('Não foi possível se conectar ao servidor de e-mail. Verifique sua conexão.');
+      showNotification('Falha de conexão. Tente novamente mais tarde.', 'error');
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
