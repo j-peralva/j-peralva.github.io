@@ -1,4 +1,4 @@
-import './css/main.css';
+import './scss/main.scss';
 import { initFooterYear } from './js/utils/dom.js';
 import { initModalListeners } from './js/modules/modal.js';
 import { initSpotlight } from './js/modules/spotlight.js';
