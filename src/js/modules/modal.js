@@ -36,7 +36,10 @@ export function initModalListeners() {
             });
         }
     });
+}
 
+// Atribuição imediata no escopo do window
+if (typeof window !== 'undefined') {
     window.openModal = openModal;
     window.closeModal = closeModal;
     window.closeModalOutside = closeModalOutside;
