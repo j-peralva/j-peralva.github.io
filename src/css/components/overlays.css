@@ -113,7 +113,7 @@
 
 /* Scrollbar Personalizada para o Modal */
 .modal-content {
-    scrollbar-width: thin;
+    scrollbar-width: auto;
     scrollbar-color: var(--card-border) transparent;
 }
 
