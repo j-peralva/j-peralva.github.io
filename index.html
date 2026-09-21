@@ -16,9 +16,6 @@
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#0d1117">
 
-    <!-- Analytics (Descomente quando configurar seu serviço) -->
-    <!-- <script async src="https://analytics.seu-dominio.com/script.js" data-website-id="SEU-WEBSITE-ID"></script> -->
-
     <!-- Open Graph (Facebook, WhatsApp, LinkedIn, Telegram) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://j-peralva.github.io/">
@@ -36,24 +33,44 @@
     <meta name="twitter:title" content="Jefferson Peralva Machiqueira | Hub Pessoal">
     <meta name="twitter:description" content="Desenvolvedor de Software focado em arquitetura backend, microsserviços e infraestrutura auto-hospedada.">
     <meta name="twitter:image" content="https://j-peralva.github.io/preview.jpg">
-
-    <!-- Entry Point do Vite -->
-    <script type="module" src="./src/main.js"></script>
 </head>
 <body>
-    <div id="app">
-        <header class="hero">
-            <h1 class="name">Jefferson Peralva</h1>
-            <p class="role">Software Developer | Backend Architecture & Self-Hosted Infra</p>
-            <p class="bio">
-                Especialista na construção de sistemas distribuídos, microsserviços e gerenciamento de infraestrutura própria.
-            </p>
-            <div class="social-links">
-                <a href="https://github.com/j-peralva" target="_blank" rel="noopener">GitHub</a>
-                <a href="https://linkedin.com/in/seu-perfil" target="_blank" rel="noopener">LinkedIn</a>
-                <a href="mailto:seu-email@dominio.com">Email</a>
+
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <main class="container" id="main-content">
+        
+        <!-- Bloco de Perfil -->
+        <header class="card profile-card">
+            <h1>Jefferson Peralva Machiqueira</h1>
+            <p>Desenvolvedor de Software focado em arquitetura backend, microsserviços e infraestrutura auto-hospedada.</p>
+            <div class="status">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span>Disponível para novos projetos</span>
+            </div>
+            <div id="github-activity" class="github-activity">
+                Carregando atividade no GitHub...
             </div>
         </header>
-    </div>
+
+        <!-- Bloco de Links Externos -->
+        <nav class="card links-card" aria-label="Redes Sociais e Contatos">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Acessar meu perfil no LinkedIn">LinkedIn</a>
+            <a href="https://github.com/j-peralva" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Acessar meu perfil no GitHub Público">GitHub Público</a>
+            <button class="social-btn" onclick="copyEmail('seu-email@dominio.com')" aria-label="Copiar endereço de e-mail para contato">Fale Comigo</button>
+        </nav>
+
+        <!-- Rodapé -->
+        <footer class="dashboard-footer">
+            <p>© <span id="current-year"></span> Jefferson Peralva Machiqueira • <a href="https://github.com/j-peralva/hub-pessoal/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="footer-link">Licença MIT</a></p>
+        </footer>
+
+    </main>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast" role="status" aria-live="polite">E-mail copiado para a área de transferência!</div>
+
+    <!-- Script de Entrada do Vite -->
+    <script type="module" src="./src/main.js"></script>
 </body>
 </html>

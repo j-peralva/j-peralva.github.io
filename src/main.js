@@ -1,6 +1,12 @@
-import './styles/main.css';
-import { initHeader } from './js/header.js';
+import './css/main.css';
+import { initFooterYear, copyEmail } from './js/utils/dom.js';
+import { initSpotlight } from './js/modules/spotlight.js';
+import { loadGitHubActivity } from './js/modules/github.js';
+
+window.copyEmail = copyEmail;
 
 document.addEventListener('DOMContentLoaded', () => {
-  initHeader();
+    initFooterYear();
+    initSpotlight();
+    loadGitHubActivity();
 });
