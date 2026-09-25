@@ -1,4 +1,5 @@
 const API_URL = import.meta.env.VITE_API_URL;
+const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY;
 
 const LIMITS = {
   name: 100,
@@ -62,6 +63,13 @@ function getFormInputs(form) {
 
 function setupFormAttributes(form) {
   if (!form) return;
+
+  // Injeta a chave pública no elemento do Turnstile dinamicamente
+  const turnstileWidget = form.querySelector('.cf-turnstile');
+  if (turnstileWidget && !turnstileWidget.getAttribute('data-sitekey')) {
+    turnstileWidget.setAttribute('data-sitekey', TURNSTILE_SITE_KEY);
+  }
+
   const { nameInput, emailInput, subjectInput, messageInput } = getFormInputs(form);
 
   if (nameInput) { nameInput.required = true; nameInput.maxLength = LIMITS.name; }
@@ -145,7 +153,7 @@ export function initContactForm() {
     }
 
     try {
-      const response = await fetch(LAMBDA_URL, {
+      const response = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, subject, message, captchaToken })

@@ -38,6 +38,7 @@ jobs:
         run: npm run build
         env:
           VITE_API_URL: ${{ vars.VITE_API_URL }}
+          VITE_TURNSTILE_SITE_KEY: ${{ vars.VITE_TURNSTILE_SITE_KEY }}
 
       - name: Upload Build Artifacts
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
