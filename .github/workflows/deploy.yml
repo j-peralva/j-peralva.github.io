@@ -36,6 +36,8 @@ jobs:
 
       - name: Build Production Bundle (Vite)
         run: npm run build
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
 
       - name: Upload Build Artifacts
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
