@@ -1,4 +1,4 @@
-const LAMBDA_URL = 'https://fkjx2ewiyx7jebu4ic62amtjle0unjjv.lambda-url.us-east-1.on.aws/';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const LIMITS = {
   name: 100,
